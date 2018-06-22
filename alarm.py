@@ -64,7 +64,7 @@ class sw40(object):
             self.send_inactive_message(formatted_time, duration)
         self.vibrating = current_time - self.last_vibration < 2
         if self.vibrating:
-            print('vibrating for {}'.format(vibration_delta)
+            print('vibrating for {}'.format(vibration_delta))
 
     def send_active_message(self, start):
         print('dryer has started')
@@ -74,7 +74,7 @@ class sw40(object):
     def send_inactive_message(self, end, duration):
         print('dryer has finished')
         self.dryer_running = False
-        sms.publish(PhoneNumber=PHONE, Message='{} End Time: {} Duration: {}'.format(END_MESSAGE, end, durati    on))
+        sms.publish(PhoneNumber=PHONE, Message='{} End Time: {} Duration: {}'.format(END_MESSAGE, end, duration))
 
 
 def main():
