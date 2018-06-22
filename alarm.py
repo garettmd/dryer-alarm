@@ -1,19 +1,18 @@
 #!/usr/bin/env python
 
 from ConfigParser import SafeConfigParser
-print('Loading AWS client')
 from boto3 import client
-print('Finished loading AWS client')
 from datetime import datetime
 import RPi.GPIO as gpio
 import sys
 import time
 
-if sys.argv[1]:
+try:
+    config_file = sys.argv[1]
     config = SafeConfigParser()
-    config.read(sys.argv[1])
-else:
-    sys.exit(2, 'Please specify the config (.ini) file.')
+    config.read(config_file)
+except IndexError:
+    sys.exit('\nError: Please specify the config (.ini) file.\n')
 
 PIN = config.getint('main', 'sensor_pin')
 BEGIN_DELAY = config.getint('main', 'begin_delay')
